@@ -21,278 +21,327 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --primary-color: #ed186b;
-      }
-      body {
-        font-family: "Inter", sans-serif;
-        background: #f9fafb;
-        color: #1f2937;
-      }
-      .primary-color {
-        color: var(--primary-color);
-      }
-      .primary-bg {
-        background-color: var(--primary-color);
-      }
-      .modal-container {
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
-      .modal-content {
-        transform: scale(0.9);
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        background: #ffffff;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        border-radius: 16px;
-      }
-      .modal-container.active .modal-content {
-        transform: scale(1);
-        opacity: 1;
-        animation: bounceIn 0.5s ease;
-      }
-      .gallery-img {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .gallery-img:hover {
-        transform: scale(1.05);
-        box-shadow: 0 12px 24px rgba(237, 24, 107, 0.2);
-      }
-      .profile-stat {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-      .profile-stat:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      }
-      .image-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 16px;
-      }
-      .image-card {
-        aspect-ratio: 1/1;
-        overflow: hidden;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease;
-        animation: fadeInUp 0.6s ease backwards;
-      }
-      .image-card:nth-child(1) { animation-delay: 0.1s; }
-      .image-card:nth-child(2) { animation-delay: 0.2s; }
-      .image-card:nth-child(3) { animation-delay: 0.3s; }
-      .image-card:nth-child(4) { animation-delay: 0.4s; }
-      .image-card:nth-child(5) { animation-delay: 0.5s; }
-      .image-card:nth-child(6) { animation-delay: 0.6s; }
-      .image-card:hover {
-        transform: translateY(-4px);
-      }
-      .section-title {
-        position: relative;
-        display: inline-block;
-        animation: fadeIn 0.8s ease;
-      }
-      .section-title::after {
-        content: "";
-        display: block;
-        width: 60px;
-        height: 3px;
-        background: var(--primary-color);
-        margin-top: 6px;
-        border-radius: 2px;
-        animation: slideInLeft 0.5s ease;
-      }
-      .scrollbar-hidden::-webkit-scrollbar {
-        display: none;
-      }
-      .scrollbar-hidden {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      .video-container {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background: #000;
-        animation: slideInRight 0.6s ease backwards;
-      }
-      .video-container:nth-child(1) { animation-delay: 0.2s; }
-      .video-container:nth-child(2) { animation-delay: 0.4s; }
-      .video-container:nth-child(3) { animation-delay: 0.6s; }
-      .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 12px;
-      }
-      .modal-img-container {
-        position: relative;
-        max-height: 80vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-      }
-      .modal-img {
-        max-width: 100%;
-        max-height: 80vh;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        border-radius: 12px;
-        transition: transform 0.4s ease;
-      }
-      .modal-img.zoomed {
-        transform: scale(1.8);
-        cursor: zoom-out;
-      }
-      .modal-nav-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s ease, transform 0.2s ease;
-        animation: pulse 1.5s infinite;
-      }
-      .modal-nav-btn:hover {
-        background: rgba(0, 0, 0, 0.9);
-        transform: translateY(-50%) scale(1.1);
-      }
-      .modal-nav-btn.prev {
-        left: 16px;
-      }
-      .modal-nav-btn.next {
-        right: 16px;
-      }
-      .modal-action-btn {
-        transition: transform 0.2s ease, color 0.2s ease;
-      }
-      .modal-action-btn:hover {
-        transform: scale(1.2);
-        color: var(--primary-color);
-      }
-      .modal-close-btn {
-        background: var(--primary-color);
-        transition: transform 0.2s ease;
-      }
-      .modal-close-btn:hover {
-        transform: scale(1.1);
-      }
-      .hover-scale {
-        transition: transform 0.3s ease;
-      }
-      .hover-scale:hover {
-        transform: scale(1.05);
-      }
-      .btn-primary {
-        background: var(--primary-color);
-        color: white;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        animation: pulse 2s infinite;
-      }
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(237, 24, 107, 0.3);
-      }
-      .tag {
-        transition: transform 0.2s ease, background 0.2s ease;
-        animation: fadeIn 0.5s ease;
-      }
-      .tag:hover {
-        transform: translateY(-2px);
-        background: #fce7f3;
-      }
-      /* Custom Animations */
-      @keyframes slideInFromTop {
-        0% {
-          transform: translateY(-100%);
-          opacity: 0;
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      @keyframes bounceIn {
-        0% {
-          transform: scale(0.8);
-          opacity: 0;
-        }
-        50% {
-          transform: scale(1.05);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(237, 24, 107, 0.4);
-        }
-        70% {
-          transform: scale(1.05);
-          box-shadow: 0 0 0 10px rgba(237, 24, 107, 0);
-        }
-        100% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(237, 24, 107, 0);
-        }
-      }
-      /* Apply Animations */
-      header {
-        animation: slideInFromTop 0.6s ease;
-      }
-      .profile-section {
-        animation: fadeIn 0.8s ease;
-      }
-      .profile-stat {
-        animation: fadeInUp 0.6s ease backwards;
-      }
-      .profile-stat:nth-child(1) { animation-delay: 0.1s; }
-      .profile-stat:nth-child(2) { animation-delay: 0.2s; }
-      .profile-stat:nth-child(3) { animation-delay: 0.3s; }
-      .profile-stat:nth-child(4) { animation-delay: 0.4s; }
-      footer {
-        animation: fadeInUp 0.8s ease;
-      }
-      @media (max-width: 640px) {
-        .image-grid {
-          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-          gap: 12px;
-        }
-        .modal-nav-btn {
-          width: 40px;
-          height: 40px;
-        }
-        .modal-nav-btn.prev {
-          left: 8px;
-        }
-        .modal-nav-btn.next {
-          right: 8px;
-        }
-        .profile-stat {
-          padding: 3rem;
-        }
-      }
-    </style>
+   <style>
+    :root {
+    --secondary-color: #ff5c00; /* Vibrant orange from the image */
+    --primary-color: #6420aa; /* Purple shade from the gradient */
+    --gradient-start: #e6e3ff; /* Light purple background from the image */
+    --gradient-end: #fff8f0; /* Light peach/orange tint */
+    --text-primary: #1a1a1a; /* Dark text for readability */
+    --text-secondary: #666666; /* Lighter gray for secondary text */
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.primary-bg {
+    background-color: var(--primary-color);
+}
+
+.modal-container {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-content {
+    transform: scale(0.9);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background: #ffffff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+}
+
+.modal-container.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+    animation: bounceIn 0.5s ease;
+}
+
+.gallery-img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(100, 32, 170, 0.2);
+}
+
+.profile-stat {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+}
+
+.profile-stat:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.image-card {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.6s ease backwards;
+}
+
+.image-card:nth-child(1) { animation-delay: 0.1s; }
+.image-card:nth-child(2) { animation-delay: 0.2s; }
+.image-card:nth-child(3) { animation-delay: 0.3s; }
+.image-card:nth-child(4) { animation-delay: 0.4s; }
+.image-card:nth-child(5) { animation-delay: 0.5s; }
+.image-card:nth-child(6) { animation-delay: 0.6s; }
+
+.image-card:hover {
+    transform: translateY(-4px);
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    animation: fadeIn 0.8s ease;
+    color: var(--text-primary);
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    margin-top: 6px;
+    border-radius: 2px;
+    animation: slideInLeft 0.5s ease;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #000;
+    animation: slideInRight 0.6s ease backwards;
+}
+
+.video-container:nth-child(1) { animation-delay: 0.2s; }
+.video-container:nth-child(2) { animation-delay: 0.4s; }
+.video-container:nth-child(3) { animation-delay: 0.6s; }
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
+.modal-img-container {
+    position: relative;
+    max-height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal-img {
+    max-width: 100%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: transform 0.4s ease;
+}
+
+.modal-img.zoomed {
+    transform: scale(1.8);
+    cursor: zoom-out;
+}
+
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    animation: pulse 1.5s infinite;
+}
+
+.modal-nav-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal-nav-btn.prev { left: 16px; }
+.modal-nav-btn.next { right: 16px; }
+
+.modal-action-btn {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.modal-action-btn:hover {
+    transform: scale(1.2);
+    color: var(--primary-color);
+}
+
+.modal-close-btn {
+    background: var(--primary-color);
+    transition: transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    transform: scale(1.1);
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: pulse 2s infinite;
+    border-radius: 0.75rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(100, 32, 170, 0.3);
+}
+
+.tag {
+    transition: transform 0.2s ease, background 0.2s ease;
+    animation: fadeIn 0.5s ease;
+    background: #f5f0ff;
+    color: var(--primary-color);
+    border-radius: 0.75rem;
+}
+
+.tag:hover {
+    transform: translateY(-2px);
+    background: #ece5ff;
+}
+
+/* Custom Animations */
+@keyframes slideInFromTop {
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(100, 32, 170, 0.4); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(100, 32, 170, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(100, 32, 170, 0); }
+}
+
+/* Apply Animations */
+header {
+    animation: slideInFromTop 0.6s ease;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.profile-section {
+    animation: fadeIn 0.8s ease;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.profile-stat {
+    animation: fadeInUp 0.6s ease backwards;
+}
+
+.profile-stat:nth-child(1) { animation-delay: 0.1s; }
+.profile-stat:nth-child(2) { animation-delay: 0.2s; }
+.profile-stat:nth-child(3) { animation-delay: 0.3s; }
+.profile-stat:nth-child(4) { animation-delay: 0.4s; }
+
+footer {
+    animation: fadeInUp 0.8s ease;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+footer h3 {
+    color: var(--primary-color);
+}
+
+footer p, footer a {
+    color: var(--text-secondary);
+}
+
+footer a:hover {
+    color: var(--primary-color);
+}
+
+@media (max-width: 640px) {
+    .image-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 12px;
+    }
+
+    .modal-nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .modal-nav-btn.prev { left: 8px; }
+    .modal-nav-btn.next { right: 8px; }
+
+    .profile-stat {
+        padding: 1rem;
+    }
+}
+   </style>
   </head>
   <body>
     <!-- Header -->
@@ -300,7 +349,9 @@
       <div
         class="container mx-auto px-4 py-3 sm:py-4 flex justify-between items-center"
       >
-        <div class="flex flex-col items-center animate__animated animate__fadeIn">
+        <div
+          class="flex flex-col items-center animate__animated animate__fadeIn"
+        >
           <img
             src="./assets/images/logo.webp"
             alt="MVOTX Logo"
@@ -333,7 +384,9 @@
       >
         <div class="flex flex-col md:flex-row">
           <!-- Profile Image -->
-          <div class="md:w-1/3 bg-gray-50 animate__animated animate__fadeInLeft">
+          <div
+            class="md:w-1/3 bg-gray-50 animate__animated animate__fadeInLeft"
+          >
             <div
               class="p-6 sm:p-8 flex flex-col items-center justify-center h-full"
             >
@@ -378,7 +431,9 @@
           </div>
 
           <!-- Profile Info -->
-          <div class="md:w-2/3 p-4 sm:p-6 lg:p-8 animate__animated animate__fadeInRight">
+          <div
+            class="md:w-2/3 p-4 sm:p-6 lg:p-8 animate__animated animate__fadeInRight"
+          >
             <h2
               class="section-title text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6"
             >
@@ -594,8 +649,7 @@
         </section>
       </div>
       <section
-        style="margin-top: 20px;"
-
+        style="margin-top: 20px"
         class="bg-white rounded-3xl shadow-xl overflow-hidden p-6 sm:p-8 mb-8 sm:mb-12 animate__animated animate__fadeInUp"
       >
         <h2
@@ -610,110 +664,82 @@
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-200 mt-12 sm:mt-16">
-      <div class="container mx-auto px-4 py-8 sm:py-12">
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12"
-        >
-          <!-- Address 1 -->
-          <div class="animate__animated animate__fadeInUp">
-            <h3 style="color: #ed186b;" class="text-sm font-semibold text-gray-700 mb-4">
-              Văn phòng 1
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              5A Trần Văn Dư, Phường 13<br />Quận Tân Bình, TP. Hồ Chí Minh
-            </p>
-          </div>
-          <!-- Address 2 -->
-          <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
-            <h3 style="color: #ed186b;" class="text-sm font-semibold text-gray-700 mb-4">
-              Văn phòng 2
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              391A Nam Kỳ Khởi Nghĩa, Phường 14<br />Quận 3, TP. Hồ Chí Minh
-            </p>
-          </div>
-          <!-- Address 3 -->
-          <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-            <h3 style="color: #ed186b;" class="text-sm font-semibold text-gray-700 mb-4">
-              Văn phòng 3
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              163-165 Trần Trọng Cung<br />Phường Tân Thuận Đông, Quận 7<br />TP.
-              Hồ Chí Minh
-            </p>
-          </div>
-          <!-- Address 4 & Contact -->
-          <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-            <h3 style="color: #ed186b;" class="text-sm font-semibold text-gray-700 mb-4">
-              Văn phòng 4
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Dragon Hills, Đường Nguyễn Hữu Thọ<br />Phước Kiển, Nhà Bè<br />TP.
-              Hồ Chí Minh
-            </p>
-            <div class="mt-4">
-              <p class="text-sm text-gray-600">
-                <span class="font-medium">Hotline:</span>
-                <a
-                  href="tel:1900633336"
-                  class="text-[var(--primary-color)] hover:underline"
-                  >1900 633 336</a
-                >
-              </p>
-              <p class="text-sm text-gray-600 mt-2">
-                <span class="font-medium">Email:</span>
-                <a
-                  href="mailto:lienhe@mvotx.com"
-                  class="text-[var(--primary-color)] hover:underline"
-                  >lienhe@mvotx.com</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- Social Media & Copyright -->
-        <div class="mt-8 sm:mt-12 pt-6 border-t border-gray-200">
-          <div
-            class="flex flex-col sm:flex-row justify-between items-center gap-4"
-          >
-            <div class="flex space-x-4 animate__animated animate__fadeInUp">
-              <a
-                href="https://mvotx.com"
-                class="text-gray-600 hover:text-[var(--primary-color)] transition-transform duration-300 hover:scale-110"
-              >
-                <ion-icon
-                 name="globe-outline"
-                  class="text-xl sm:text-2xl"
-                ></ion-icon>
-              </a>
-              <a
-              href="https://www.facebook.com/mvotxcom"
-                class="text-gray-600 hover:text-[var(--primary-color)] transition-transform duration-300 hover:scale-110"
-              >
-                <ion-icon
-                  name="logo-facebook"
-                  class="text-xl sm:text-2xl"
-                ></ion-icon>
-              </a>
-              <a
-              href="mailto:lienhe@mvotx.com"
-                class="text-gray-600 hover:text-[var(--primary-color)] transition-transform duration-300 hover:scale-110"
-              >
-                <ion-icon
-                  name="logo-google"
-                  class="text-xl sm:text-2xl"
-                ></ion-icon>
-              </a>
-            </div>
-            <p class="text-sm text-gray-500 animate__animated animate__fadeInUp">
-              © 2025 — bởi MVOT Group. Mọi quyền được bảo lưu.
-            </p>
-          </div>
+<footer style="background: #ffffff; border-top: 1px solid rgba(0, 0, 0, 0.05); margin-top: 3rem; padding: 2rem 0;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+      <div style="animation: fadeInUp 0.8s ease;">
+        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
+          Văn phòng 1
+        </h3>
+        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
+          5A Trần Văn Dư, Phường 13<br />Quận Tân Bình, TP. Hồ Chí Minh
+        </p>
+      </div>
+      <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.1s;">
+        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
+          Văn phòng 2
+        </h3>
+        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
+          391A Nam Kỳ Khởi Nghĩa, Phường 14<br />Quận 3, TP. Hồ Chí Minh
+        </p>
+      </div>
+      <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.2s;">
+        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
+          Văn phòng 3
+        </h3>
+        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
+          163-165 Trần Trọng Cung<br />Phường Tân Thuận Đông, Quận 7<br />TP. Hồ Chí Minh
+        </p>
+      </div>
+      <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.3s;">
+        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
+          Văn phòng 4
+        </h3>
+        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
+          Dragon Hills, Đường Nguyễn Hữu Thọ<br />Phước Kiển, Nhà Bè<br />TP. Hồ Chí Minh
+        </p>
+        <div style="margin-top: 1rem;">
+          <p style="font-size: 0.875rem; color: #666666;">
+            <span style="font-weight: 500;">Hotline:</span>
+            <a href="tel:1900633336" style="color: #6420aa; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ff5c00'" onmouseout="this.style.color='#6420aa'">
+              1900 633 336
+            </a>
+          </p>
+          <p style="font-size: 0.875rem; color: #666666; margin-top: 0.5rem;">
+            <span style="font-weight: 500;">Email:</span>
+            <a href="mailto:lienhe@mvotx.com" style="color: #6420aa; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ff5c00'" onmouseout="this.style.color='#6420aa'">
+              lienhe@mvotx.com
+            </a>
+          </p>
         </div>
       </div>
-    </footer>
+    </div>
+    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(0, 0, 0, 0.05);">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: space-between;">
+        <div style="display: flex; gap: 1rem; animation: fadeInUp 0.8s ease;">
+          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-twitter" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+          <a href="https://www.facebook.com/mvotxcom" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-facebook" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-google" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-pinterest" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-linkedin" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+        </div>
+        <p style="font-size: 0.875rem; color: #666666; animation: fadeInUp 0.8s ease;">
+          © 2025 — bởi MVOT Group. Mọi quyền được bảo lưu.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <!-- Modal -->
     <div
@@ -721,7 +747,9 @@
       data-modal-container
     >
       <div class="overlay absolute inset-0" data-overlay></div>
-      <div class="modal-content max-w-[95vw] max-h-[95vh] relative animate__animated">
+      <div
+        class="modal-content max-w-[95vw] max-h-[95vh] relative animate__animated"
+      >
         <button
           class="modal-close-btn absolute -top-4 -right-4 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-xl z-10"
           data-modal-close-btn

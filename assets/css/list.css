@@ -1,0 +1,175 @@
+:root {
+    --secondary-color: #ff5c00; /* Vibrant orange from the image */
+    --primary-color: #6420aa; /* Purple shade from the gradient */
+    --gradient-start: #e6e3ff; /* Light purple background from the image */
+    --gradient-end: #fff8f0; /* Light peach/orange tint */
+    --text-primary: #1a1a1a; /* Dark text for readability */
+    --text-secondary: #666666; /* Lighter gray for secondary text */
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.primary-bg {
+    background-color: var(--primary-color);
+}
+
+.host-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+}
+
+.host-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    animation: fadeIn 0.8s ease;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    margin-top: 6px;
+    border-radius: 2px;
+    animation: slideInLeft 0.5s ease;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: pulse 2s infinite;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(100, 32, 170, 0.3);
+}
+
+.filter-select,
+.filter-input {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: #ffffff;
+    color: var(--text-primary);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(100, 32, 170, 0.1);
+}
+
+.filter-section {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 1.5rem;
+    padding: 2rem;
+}
+
+/* Custom Animations */
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(100, 32, 170, 0.4);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(100, 32, 170, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(100, 32, 170, 0);
+    }
+}
+
+header {
+    animation: slideInFromTop 0.6s ease;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.host-card {
+    animation: fadeInUp 0.6s ease backwards;
+}
+
+.host-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.host-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.host-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.filter-section {
+    animation: fadeIn 0.8s ease;
+}
+
+footer {
+    animation: fadeInUp 0.8s ease;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+footer h3 {
+    color: var(--primary-color);
+}
+
+footer p,
+footer a {
+    color: var(--text-secondary);
+}
+
+footer a:hover {
+    color: var(--primary-color);
+}
+
+@media (max-width: 640px) {
+    .host-card {
+        padding: 1rem;
+    }
+
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -21,125 +21,24 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --primary-color: #ed186b;
-      }
-      body {
-        font-family: "Inter", sans-serif;
-        background: #f9fafb;
-        color: #1f2937;
-      }
-      .primary-color {
-        color: var(--primary-color);
-      }
-      .primary-bg {
-        background-color: var(--primary-color);
-      }
-      .host-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .host-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(237, 24, 107, 0.2);
-      }
-      .section-title {
-        position: relative;
-        display: inline-block;
-        animation: fadeIn 0.8s ease;
-      }
-      .section-title::after {
-        content: "";
-        display: block;
-        width: 60px;
-        height: 3px;
-        background: var(--primary-color);
-        margin-top: 6px;
-        border-radius: 2px;
-        animation: slideInLeft 0.5s ease;
-      }
-      .btn-primary {
-        background: var(--primary-color);
-        color: white;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        animation: pulse 2s infinite;
-      }
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(237, 24, 107, 0.3);
-      }
-      .filter-select,
-      .filter-input {
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      }
-      .filter-select:focus,
-      .filter-input:focus {
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(237, 24, 107, 0.1);
-      }
-      /* Custom Animations */
-      @keyframes slideInFromTop {
-        0% {
-          transform: translateY(-100%);
-          opacity: 0;
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(237, 24, 107, 0.4);
-        }
-        70% {
-          transform: scale(1.05);
-          box-shadow: 0 0 0 10px rgba(237, 24, 107, 0);
-        }
-        100% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(237, 24, 107, 0);
-        }
-      }
-      header {
-        animation: slideInFromTop 0.6s ease;
-      }
-      .host-card {
-        animation: fadeInUp 0.6s ease backwards;
-      }
-      .host-card:nth-child(1) { animation-delay: 0.1s; }
-      .host-card:nth-child(2) { animation-delay: 0.2s; }
-      .host-card:nth-child(3) { animation-delay: 0.3s; }
-      .filter-section {
-        animation: fadeIn 0.8s ease;
-      }
-      footer {
-        animation: fadeInUp 0.8s ease;
-      }
-      @media (max-width: 640px) {
-        .host-card {
-          padding: 1rem;
-        }
-        .filter-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
+    <link href="./assets/css/list.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-40">
+    <header id="header" class="bg-white shadow-md sticky top-0 z-40">
       <div
         class="container mx-auto px-4 py-3 sm:py-4 flex justify-between items-center"
       >
-        <div class="flex flex-col items-center animate__animated animate__fadeIn">
+        <div
+          class="flex flex-col items-center animate__animated animate__fadeIn"
+        >
           <img
             src="./assets/images/logo.webp"
             alt="MVOTX Logo"
             class="h-8 w-auto sm:h-10"
           />
           <span
+            style="color: #6420aa"
             class="text-base sm:text-lg font-bold text-[var(--primary-color)] mt-1"
             >Creator House</span
           >
@@ -161,11 +60,13 @@
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8 sm:py-12">
       <!-- Filter Section -->
-      <section class="filter-section bg-white rounded-3xl shadow-xl p-6 sm:p-8 mb-8 sm:mb-12">
+      <section
+        class="filter-section bg-white rounded-3xl shadow-xl p-6 sm:p-8 mb-8 sm:mb-12"
+      >
         <h2
           class="section-title text-xl sm:text-2xl font-semibold text-gray-900 mb-6 sm:mb-8"
         >
-         Lọc Host
+          Lọc Host
         </h2>
         <div
           class="filter-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
@@ -183,8 +84,7 @@
               <option value="">Tất cả</option>
             </select>
           </div>
-          
-       
+
           <div>
             <label
               class="block text-sm font-medium text-gray-700 mb-2"
@@ -235,144 +135,82 @@
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-200 mt-12 sm:mt-16">
-      <div class="container mx-auto px-4 py-8 sm:py-12">
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12"
-        >
-          <div class="animate__animated animate__fadeInUp">
-            <h3
-              style="color: #ed186b;"
-              class="text-sm font-semibold text-gray-700 mb-4"
-            >
-              Văn phòng 1
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              5A Trần Văn Dư, Phường 13<br />Quận Tân Bình, TP. Hồ Chí Minh
-            </p>
-          </div>
-          <div
-            class="animate__animated animate__fadeInUp"
-            style="animation-delay: 0.1s;"
-          >
-            <h3
-              style="color: #ed186b;"
-              class="text-sm font-semibold text-gray-700 mb-4"
-            >
-              Văn phòng 2
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              391A Nam Kỳ Khởi Nghĩa, Phường 14<br />Quận 3, TP. Hồ Chí Minh
-            </p>
-          </div>
-          <div
-            class="animate__animated animate__fadeInUp"
-            style="animation-delay: 0.2s;"
-          >
-            <h3
-              style="color: #ed186b;"
-              class="text-sm font-semibold text-gray-700 mb-4"
-            >
-              Văn phòng 3
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              163-165 Trần Trọng Cung<br />Phường Tân Thuận Đông, Quận 7<br />TP.
-              Hồ Chí Minh
-            </p>
-          </div>
-          <div
-            class="animate__animated animate__fadeInUp"
-            style="animation-delay: 0.3s;"
-          >
-            <h3
-              style="color: #ed186b;"
-              class="text-sm font-semibold text-gray-700 mb-4"
-            >
-              Văn phòng 4
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Dragon Hills, Đường Nguyễn Hữu Thọ<br />Phước Kiển, Nhà Bè<br />TP.
-              Hồ Chí Minh
-            </p>
-            <div class="mt-4">
-              <p class="text-sm text-gray-600">
-                <span class="font-medium">Hotline:</span>
-                <a
-                  href="tel:1900633336"
-                  class="text-[var(--primary-color)] hover:underline"
-                  >1900 633 336</a
-                >
-              </p>
-              <p class="text-sm text-gray-600 mt-2">
-                <span class="font-medium">Email:</span>
-                <a
-                  href="mailto:lienhe@mvotx.com"
-                  class="text-[var(--primary-color)] hover:underline"
-                  >lienhe@mvotx.com</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="mt-8 sm:mt-12 pt-6 border-t border-gray-200">
-          <div
-            class="flex flex-col sm:flex-row justify-between items-center gap-4"
-          >
-            <div class="flex space-x-4 animate__animated animate__fadeInUp">
-              <a
-                href="#"
-                class="text-gray-600 hover:text-[var(--primary-color)] transition-transform duration-300 hover:scale-110"
-              >
-                <ion-icon
-                  name="logo-twitter"
-                  class="text-xl sm:text-2xl"
-                ></ion-icon>
-              </a>
-              <a
-                href="https://www.facebook.com/mvotxcom"
-                class="text-gray-600 hover:text-[var(--primary-color)] transition-transform duration-300 hover:scale-110"
-              >
-                <ion-icon
-                  name="logo-facebook"
-                  class="text-xl sm:text-2xl"
-                ></ion-icon>
-              </a>
-              <a
-                href="#"
-                class="text-gray-600 hover:text-[var(--primary-color)] transition-transform duration-300 hover:scale-110"
-              >
-                <ion-icon
-                  name="logo-google"
-                  class="text-xl sm:text-2xl"
-                ></ion-icon>
-              </a>
-              <a
-                href="#"
-                class="text-gray-600 hover:text-[var(--primary-color)] transition-transform duration-300 hover:scale-110"
-              >
-                <ion-icon
-                  name="logo-pinterest"
-                  class="text-xl sm:text-2xl"
-                ></ion-icon>
-              </a>
-              <a
-                href="#"
-                class="text-gray-600 hover:text-[var(--primary-color)] transition-transform duration-300 hover:scale-110"
-              >
-                <ion-icon
-                  name="logo-linkedin"
-                  class="text-xl sm:text-2xl"
-                ></ion-icon>
-              </a>
-            </div>
-            <p class="text-sm text-gray-500 animate__animated animate__fadeInUp">
-              © 2025 — bởi MVOT Group. Mọi quyền được bảo lưu.
-            </p>
-          </div>
+  <footer style="background: #ffffff; border-top: 1px solid rgba(0, 0, 0, 0.05); margin-top: 3rem; padding: 2rem 0;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+      <div style="animation: fadeInUp 0.8s ease;">
+        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
+          Văn phòng 1
+        </h3>
+        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
+          5A Trần Văn Dư, Phường 13<br />Quận Tân Bình, TP. Hồ Chí Minh
+        </p>
+      </div>
+      <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.1s;">
+        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
+          Văn phòng 2
+        </h3>
+        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
+          391A Nam Kỳ Khởi Nghĩa, Phường 14<br />Quận 3, TP. Hồ Chí Minh
+        </p>
+      </div>
+      <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.2s;">
+        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
+          Văn phòng 3
+        </h3>
+        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
+          163-165 Trần Trọng Cung<br />Phường Tân Thuận Đông, Quận 7<br />TP. Hồ Chí Minh
+        </p>
+      </div>
+      <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.3s;">
+        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
+          Văn phòng 4
+        </h3>
+        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
+          Dragon Hills, Đường Nguyễn Hữu Thọ<br />Phước Kiển, Nhà Bè<br />TP. Hồ Chí Minh
+        </p>
+        <div style="margin-top: 1rem;">
+          <p style="font-size: 0.875rem; color: #666666;">
+            <span style="font-weight: 500;">Hotline:</span>
+            <a href="tel:1900633336" style="color: #6420aa; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ff5c00'" onmouseout="this.style.color='#6420aa'">
+              1900 633 336
+            </a>
+          </p>
+          <p style="font-size: 0.875rem; color: #666666; margin-top: 0.5rem;">
+            <span style="font-weight: 500;">Email:</span>
+            <a href="mailto:lienhe@mvotx.com" style="color: #6420aa; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ff5c00'" onmouseout="this.style.color='#6420aa'">
+              lienhe@mvotx.com
+            </a>
+          </p>
         </div>
       </div>
-    </footer>
+    </div>
+    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(0, 0, 0, 0.05);">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: space-between;">
+        <div style="display: flex; gap: 1rem; animation: fadeInUp 0.8s ease;">
+          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-twitter" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+          <a href="https://www.facebook.com/mvotxcom" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-facebook" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-google" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-pinterest" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
+            <ion-icon name="logo-linkedin" style="font-size: 1.5rem;"></ion-icon>
+          </a>
+        </div>
+        <p style="font-size: 0.875rem; color: #666666; animation: fadeInUp 0.8s ease;">
+          © 2025 — bởi MVOT Group. Mọi quyền được bảo lưu.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <!-- Scripts -->
     <script
@@ -411,7 +249,11 @@
           achievements:
             "Hợp tác với đa dạng nhãn hàng, host độc quyền và nhiều phiên mega live với doanh số cao",
           style: "Sang trọng, chính xác và chỉn chu",
-          suitableProducts: ["Phụ kiện thời trang", "Thời trang nam", "Mỹ phẩm"],
+          suitableProducts: [
+            "Phụ kiện thời trang",
+            "Thời trang nam",
+            "Mỹ phẩm",
+          ],
           videoLinks: [
             "https://drive.google.com/file/d/16L92vIBdF9XKOSsPdB2a_CywRwESqGbx/view",
             "https://drive.google.com/file/d/16L92vIBdF9XKOSsPdB2a_CywRwESqGbx/view",
@@ -459,15 +301,16 @@
 
       const hostList = document.getElementById("host-list");
       const filterGender = document.getElementById("filter-gender");
-    
+
       const filterDialect = document.getElementById("filter-dialect");
-      const filterBirthYearFrom = document.getElementById("filter-birthYear-from");
+      const filterBirthYearFrom = document.getElementById(
+        "filter-birthYear-from"
+      );
       const filterBirthYearTo = document.getElementById("filter-birthYear-to");
 
       // Lấy giá trị duy nhất cho bộ lọc
-      const getUniqueValues = (key) => [
-        ...new Set(hosts.map((host) => host[key])),
-      ].sort();
+      const getUniqueValues = (key) =>
+        [...new Set(hosts.map((host) => host[key]))].sort();
       const genders = getUniqueValues("gender");
       const hometowns = getUniqueValues("hometown");
       const dialects = getUniqueValues("dialect");
@@ -497,7 +340,7 @@
       // Hàm lọc host
       function filterHosts() {
         const gender = filterGender.value;
-      
+
         const dialect = filterDialect.value;
         const birthYearFrom = Number(filterBirthYearFrom.value) || minBirthYear;
         const birthYearTo = Number(filterBirthYearTo.value) || maxBirthYear;
@@ -531,17 +374,25 @@
             <div class="flex flex-col items-center">
               <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl mb-4">
                 <img
-                  src="${host.personalImages[0] || "https://via.placeholder.com/160"}"
+                  src="${
+                    host.personalImages[0] || "https://via.placeholder.com/160"
+                  }"
                   alt="${host.fullName}"
                   class="w-full h-full object-cover"
                 />
               </div>
-              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">${host.fullName}</h3>
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">${
+                host.fullName
+              }</h3>
               <p class="text-sm text-gray-600 mb-2">
-                <span class="font-medium">Lĩnh vực:</span> ${host.fields.join(", ") || "Không có"}
+                <span class="font-medium">Lĩnh vực:</span> ${
+                  host.fields.join(", ") || "Không có"
+                }
               </p>
               <p class="text-sm text-gray-600 text-center mb-4">
-                <span class="font-medium">Điểm mạnh:</span> ${host.strengths || "Không có"}
+                <span class="font-medium">Điểm mạnh:</span> ${
+                  host.strengths || "Không có"
+                }
               </p>
               <a
                 href="/host/${host._id}"
