@@ -203,6 +203,65 @@
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
       }
 
+      #video-list {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 12px; /* Giảm khoảng cách giữa các video */
+        overflow-x: auto;
+        padding-bottom: 16px;
+        scroll-snap-type: x mandatory; /* Tạo hiệu ứng snap khi cuộn */
+        -webkit-overflow-scrolling: touch; /* Cải thiện cuộn trên iOS */
+        position: relative;
+      }
+
+      .video-container {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 280px; /* Giảm chiều rộng để hiển thị tốt trên mobile */
+        aspect-ratio: 9 / 16;
+        margin: 0;
+        scroll-snap-align: start; /* Đảm bảo video căn chỉnh khi cuộn */
+      }
+
+      .video-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 16px;
+        object-fit: cover;
+        display: block; /* Loại bỏ khoảng trống dưới iframe */
+      }
+
+      /* Chỉ báo cuộn */
+      #video-list::after {
+        content: "Vuốt xem thêm →";
+        position: absolute;
+        bottom: 0;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+
+      #video-list:hover::after {
+        opacity: 1;
+      }
+
+      @media (max-width: 640px) {
+        .video-container {
+          max-width: 240px; /* Thu nhỏ hơn trên mobile */
+        }
+
+        #video-list::after {
+          font-size: 10px;
+          padding: 3px 6px;
+        }
+      }
+
       .modal-img-container {
         position: relative;
         max-height: 80vh;
