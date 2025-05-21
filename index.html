@@ -1208,7 +1208,7 @@
         document.body.innerHTML =
           '<p class="text-red-500 text-center">Không tìm thấy ID người dùng.</p>';
       } else {
-        fetch(`http://localhost:3333/api2/users/public/${userId}`)
+        fetch(`https://uploads.mvotx.com/api2/users/public/${userId}`)
           .then((response) => {
             if (!response.ok) throw new Error("Không thể lấy dữ liệu");
             return response.json();
