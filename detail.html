@@ -154,17 +154,20 @@
         scrollbar-width: none;
       }
 
+      #video-list {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 16px; /* Giảm khoảng cách giữa các video */
+        overflow-x: auto;
+        padding-bottom: 16px;
+      }
+
       .video-container {
-        position: relative;
+        flex: 0 0 auto;
         width: 100%;
-        max-width: 360px;
+        max-width: 320px; /* Giảm chiều rộng để video gọn hơn */
         aspect-ratio: 9 / 16;
-        margin: 0 auto;
-        overflow: hidden;
-        border-radius: 16px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        background: #000;
-        animation: slideInUp 0.6s ease backwards;
+        margin: 0;
       }
 
       .video-container:nth-child(1) {
@@ -497,7 +500,7 @@
               </p>
               <div class="flex justify-center gap-4 mt-4 w-full">
                 <a
-                  href="mailto:tubv@mvot.vn"
+                  href="https://www.facebook.com/messages/t/mvotxcom"
                   id="contact-btn"
                   class="btn-primary px-4 sm:px-6 py-2 sm:py-3 rounded-xl flex items-center justify-center text-sm font-semibold"
                 >
@@ -713,7 +716,10 @@
         >
           Video Livestream
         </h2>
-        <div id="video-list" class="grid grid grid-cols-2 gap-6"></div>
+        <div
+          id="video-list"
+          class="flex overflow-x-auto scrollbar-hidden gap-4 pb-4"
+        ></div>
       </section>
     </main>
 
