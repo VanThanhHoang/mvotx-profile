@@ -21,6 +21,27 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
       rel="stylesheet"
     />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        overscroll-behavior: none; /* Prevents scroll bounce for smoother feel */
+      }
+      .host-card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .host-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      img {
+        will-change: transform; /* Improves rendering performance */
+      }
+    </style>
     <link href="./assets/css/list.css" rel="stylesheet" />
   </head>
   <body>
@@ -36,6 +57,7 @@
             src="./assets/images/logo.webp"
             alt="MVOTX Logo"
             class="h-8 w-auto sm:h-10"
+            loading="lazy"
           />
           <span
             style="color: #6420aa"
@@ -366,24 +388,34 @@
       const hostList = document.getElementById("host-list");
       const filterGender = document.getElementById("filter-gender");
       const filterDialect = document.getElementById("filter-dialect");
-      const filterBirthYearFrom = document.getElementById(
-        "filter-birthYear-from"
-      );
+      const filterBirthYearFrom = document.getElementById("filter-birthYear-from");
       const filterBirthYearTo = document.getElementById("filter-birthYear-to");
 
-      let hosts = []; // Initialize hosts array
+      let hosts = [];
 
-      // Lấy giá trị duy nhất cho bộ lọc
+      // Debounce function to limit frequent calls
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
+      // Get unique values for filters
       const getUniqueValues = (key) =>
         [...new Set(hosts.map((host) => host[key]))].sort();
 
-      // Khởi tạo bộ lọc
+      // Initialize filters
       function initializeFilters() {
         const genders = getUniqueValues("gender");
         const dialects = getUniqueValues("dialect");
         const birthYears = getUniqueValues("birthYear").map(Number);
 
-        // Điền giá trị vào dropdown gender
         genders.forEach((gender) => {
           const option = document.createElement("option");
           option.value = gender;
@@ -391,7 +423,6 @@
           filterGender.appendChild(option);
         });
 
-        // Điền giá trị vào dropdown dialect
         dialects.forEach((dialect) => {
           const option = document.createElement("option");
           option.value = dialect;
@@ -399,14 +430,13 @@
           filterDialect.appendChild(option);
         });
 
-        // Thiết lập giá trị mặc định cho bộ lọc năm sinh
         const minBirthYear = Math.min(...birthYears);
         const maxBirthYear = Math.max(...birthYears);
         filterBirthYearFrom.value = minBirthYear;
         filterBirthYearTo.value = maxBirthYear;
       }
 
-      // Hàm lọc host
+      // Filter hosts
       function filterHosts() {
         const gender = filterGender.value;
         const dialect = filterDialect.value;
@@ -429,7 +459,7 @@
         renderHosts(filteredHosts);
       }
 
-      // Hàm hiển thị danh sách host
+      // Render host list with animation
       function renderHosts(hostsToRender) {
         hostList.innerHTML = "";
         if (hostsToRender.length === 0) {
@@ -437,41 +467,46 @@
             '<p class="text-gray-500 text-center col-span-full">Không tìm thấy host nào.</p>';
           return;
         }
-        hostsToRender.forEach((host) => {
+        hostsToRender.forEach((host, index) => {
           const card = document.createElement("div");
           card.className =
             "host-card bg-white rounded-3xl shadow-xl overflow-hidden p-6 sm:p-8";
           card.innerHTML = `
-      <div class="flex flex-col items-center">
-        <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl mb-4">
-          <img
-            src="${
-              host.personalImages?.[0] || "https://via.placeholder.com/160"
-            }"
-            alt="${host.fullName}"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">${
-          host.fullName
-        }</h3>
-        <p class="text-sm text-gray-600 text-center mb-4">
-          <span class="font-medium"></span> ${host.strengths || "Không có"}
-        </p>
-        <a
-          href="detail.html?id=${host._id}"
-          class="btn-primary px-4 sm:px-6 py-2 sm:py-3 rounded-xl flex items-center justify-center text-sm font-semibold"
-        >
-          <ion-icon name="eye-outline" class="mr-2"></ion-icon>
-          Xem chi tiết
-        </a>
-      </div>
-    `;
+            <div class="flex flex-col items-center">
+              <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl mb-4">
+                <img
+                  src="${
+                    host.personalImages?.[0] || "https://via.placeholder.com/160"
+                  }"
+                  alt="${host.fullName}"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">${
+                host.fullName
+              }</h3>
+              <p class="text-sm text-gray-600 text-center mb-4">
+                <span class="font-medium"></span> ${host.strengths || "Không có"}
+              </p>
+              <a
+                href="detail.html?id=${host._id}"
+                class="btn-primary px-4 sm:px-6 py-2 sm:py-3 rounded-xl flex items-center justify-center text-sm font-semibold"
+              >
+                <ion-icon name="eye-outline" class="mr-2"></ion-icon>
+                Xem chi tiết
+              </a>
+            </div>
+          `;
           hostList.appendChild(card);
+          // Trigger animation with slight delay for staggered effect
+          setTimeout(() => {
+            card.classList.add("visible");
+          }, index * 50);
         });
       }
 
-      // Hàm sao chép link
+      // Copy link function
       const copyLink = () => {
         const url = window.location.href;
         navigator.clipboard.writeText(url).then(() => {
@@ -479,7 +514,10 @@
         });
       };
 
-      // Fetch dữ liệu và khởi tạo
+      // Debounced filter function
+      const debouncedFilterHosts = debounce(filterHosts, 300);
+
+      // Fetch data and initialize
       fetch("https://uploads.mvotx.com/api2/users")
         .then((response) => {
           if (!response.ok) throw new Error("Không thể lấy dữ liệu");
@@ -488,7 +526,6 @@
         .then((data) => {
           hosts = data
             .filter((item) => {
-              console.log(item);
               return item?.personalInfo2?.fullName && item.signStatus != "out";
             })
             .map((item) => {
@@ -497,14 +534,13 @@
                 _id: item._id,
               };
             });
-          console.log(hosts);
           initializeFilters();
           renderHosts(hosts);
-          // Thêm sự kiện cho các bộ lọc
-          filterGender.addEventListener("change", filterHosts);
-          filterDialect.addEventListener("change", filterHosts);
-          filterBirthYearFrom.addEventListener("input", filterHosts);
-          filterBirthYearTo.addEventListener("input", filterHosts);
+          // Add event listeners for filters
+          filterGender.addEventListener("change", debouncedFilterHosts);
+          filterDialect.addEventListener("change", debouncedFilterHosts);
+          filterBirthYearFrom.addEventListener("input", debouncedFilterHosts);
+          filterBirthYearTo.addEventListener("input", debouncedFilterHosts);
         })
         .catch((error) => {
           console.error("Lỗi khi lấy dữ liệu:", error);
