@@ -21,327 +21,390 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
       rel="stylesheet"
     />
-   <style>
-    :root {
-    --secondary-color: #ff5c00; /* Vibrant orange from the image */
-    --primary-color: #6420aa; /* Purple shade from the gradient */
-    --gradient-start: #e6e3ff; /* Light purple background from the image */
-    --gradient-end: #fff8f0; /* Light peach/orange tint */
-    --text-primary: #1a1a1a; /* Dark text for readability */
-    --text-secondary: #666666; /* Lighter gray for secondary text */
-}
+    <style>
+      :root {
+        --secondary-color: #ff5c00; /* Vibrant orange from the image */
+        --primary-color: #6420aa; /* Purple shade from the gradient */
+        --gradient-start: #e6e3ff; /* Light purple background from the image */
+        --gradient-end: #fff8f0; /* Light peach/orange tint */
+        --text-primary: #1a1a1a; /* Dark text for readability */
+        --text-secondary: #666666; /* Lighter gray for secondary text */
+      }
 
-body {
-    font-family: "Inter", sans-serif;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: var(--text-primary);
-    min-height: 100vh;
-}
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start),
+          var(--gradient-end)
+        );
+        color: var(--text-primary);
+        min-height: 100vh;
+      }
 
-.primary-color {
-    color: var(--primary-color);
-}
+      .primary-color {
+        color: var(--primary-color);
+      }
 
-.primary-bg {
-    background-color: var(--primary-color);
-}
+      .primary-bg {
+        background-color: var(--primary-color);
+      }
 
-.modal-container {
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+      .modal-container {
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
 
-.modal-content {
-    transform: scale(0.9);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    background: #ffffff;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-radius: 16px;
-}
+      .modal-content {
+        transform: scale(0.9);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        background: #ffffff;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-radius: 16px;
+      }
 
-.modal-container.active .modal-content {
-    transform: scale(1);
-    opacity: 1;
-    animation: bounceIn 0.5s ease;
-}
+      .modal-container.active .modal-content {
+        transform: scale(1);
+        opacity: 1;
+        animation: bounceIn 0.5s ease;
+      }
 
-.gallery-img {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+      .gallery-img {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
 
-.gallery-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 24px rgba(100, 32, 170, 0.2);
-}
+      .gallery-img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 24px rgba(100, 32, 170, 0.2);
+      }
 
-.profile-stat {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 12px;
-}
+      .profile-stat {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+      }
 
-.profile-stat:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
+      .profile-stat:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
 
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
-}
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+      }
 
-.image-card {
-    aspect-ratio: 1/1;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-    animation: fadeInUp 0.6s ease backwards;
-}
+      .image-card {
+        aspect-ratio: 1/1;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+        animation: fadeInUp 0.6s ease backwards;
+      }
 
-.image-card:nth-child(1) { animation-delay: 0.1s; }
-.image-card:nth-child(2) { animation-delay: 0.2s; }
-.image-card:nth-child(3) { animation-delay: 0.3s; }
-.image-card:nth-child(4) { animation-delay: 0.4s; }
-.image-card:nth-child(5) { animation-delay: 0.5s; }
-.image-card:nth-child(6) { animation-delay: 0.6s; }
+      .image-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .image-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .image-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .image-card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .image-card:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .image-card:nth-child(6) {
+        animation-delay: 0.6s;
+      }
 
-.image-card:hover {
-    transform: translateY(-4px);
-}
+      .image-card:hover {
+        transform: translateY(-4px);
+      }
 
-.section-title {
-    position: relative;
-    display: inline-block;
-    animation: fadeIn 0.8s ease;
-    color: var(--text-primary);
-}
+      .section-title {
+        position: relative;
+        display: inline-block;
+        animation: fadeIn 0.8s ease;
+        color: var(--text-primary);
+      }
 
-.section-title::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--primary-color);
-    margin-top: 6px;
-    border-radius: 2px;
-    animation: slideInLeft 0.5s ease;
-}
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--primary-color);
+        margin-top: 6px;
+        border-radius: 2px;
+        animation: slideInLeft 0.5s ease;
+      }
 
-.scrollbar-hidden::-webkit-scrollbar {
-    display: none;
-}
+      .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+      }
 
-.scrollbar-hidden {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+      .scrollbar-hidden {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
 
-.video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: #000;
-    animation: slideInRight 0.6s ease backwards;
-}
+      .video-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background: #000;
+        animation: slideInRight 0.6s ease backwards;
+      }
 
-.video-container:nth-child(1) { animation-delay: 0.2s; }
-.video-container:nth-child(2) { animation-delay: 0.4s; }
-.video-container:nth-child(3) { animation-delay: 0.6s; }
+      .video-container:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .video-container:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .video-container:nth-child(3) {
+        animation-delay: 0.6s;
+      }
 
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 12px;
-}
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 12px;
+      }
 
-.modal-img-container {
-    position: relative;
-    max-height: 80vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+      .modal-img-container {
+        position: relative;
+        max-height: 80vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
 
-.modal-img {
-    max-width: 100%;
-    max-height: 80vh;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-radius: 12px;
-    transition: transform 0.4s ease;
-}
+      .modal-img {
+        max-width: 100%;
+        max-height: 80vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 12px;
+        transition: transform 0.4s ease;
+      }
 
-.modal-img.zoomed {
-    transform: scale(1.8);
-    cursor: zoom-out;
-}
+      .modal-img.zoomed {
+        transform: scale(1.8);
+        cursor: zoom-out;
+      }
 
-.modal-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
-    animation: pulse 1.5s infinite;
-}
+      .modal-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease, transform 0.2s ease;
+        animation: pulse 1.5s infinite;
+      }
 
-.modal-nav-btn:hover {
-    background: rgba(0, 0, 0, 0.9);
-    transform: translateY(-50%) scale(1.1);
-}
+      .modal-nav-btn:hover {
+        background: rgba(0, 0, 0, 0.9);
+        transform: translateY(-50%) scale(1.1);
+      }
 
-.modal-nav-btn.prev { left: 16px; }
-.modal-nav-btn.next { right: 16px; }
+      .modal-nav-btn.prev {
+        left: 16px;
+      }
+      .modal-nav-btn.next {
+        right: 16px;
+      }
 
-.modal-action-btn {
-    transition: transform 0.2s ease, color 0.2s ease;
-}
+      .modal-action-btn {
+        transition: transform 0.2s ease, color 0.2s ease;
+      }
 
-.modal-action-btn:hover {
-    transform: scale(1.2);
-    color: var(--primary-color);
-}
+      .modal-action-btn:hover {
+        transform: scale(1.2);
+        color: var(--primary-color);
+      }
 
-.modal-close-btn {
-    background: var(--primary-color);
-    transition: transform 0.2s ease;
-}
+      .modal-close-btn {
+        background: var(--primary-color);
+        transition: transform 0.2s ease;
+      }
 
-.modal-close-btn:hover {
-    transform: scale(1.1);
-}
+      .modal-close-btn:hover {
+        transform: scale(1.1);
+      }
 
-.hover-scale {
-    transition: transform 0.3s ease;
-}
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
 
-.hover-scale:hover {
-    transform: scale(1.05);
-}
+      .hover-scale:hover {
+        transform: scale(1.05);
+      }
 
-.btn-primary {
-    background: var(--primary-color);
-    color: white;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    animation: pulse 2s infinite;
-    border-radius: 0.75rem;
-}
+      .btn-primary {
+        background: var(--primary-color);
+        color: white;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        animation: pulse 2s infinite;
+        border-radius: 0.75rem;
+      }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(100, 32, 170, 0.3);
-}
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(100, 32, 170, 0.3);
+      }
 
-.tag {
-    transition: transform 0.2s ease, background 0.2s ease;
-    animation: fadeIn 0.5s ease;
-    background: #f5f0ff;
-    color: var(--primary-color);
-    border-radius: 0.75rem;
-}
+      .tag {
+        transition: transform 0.2s ease, background 0.2s ease;
+        animation: fadeIn 0.5s ease;
+        background: #f5f0ff;
+        color: var(--primary-color);
+        border-radius: 0.75rem;
+      }
 
-.tag:hover {
-    transform: translateY(-2px);
-    background: #ece5ff;
-}
+      .tag:hover {
+        transform: translateY(-2px);
+        background: #ece5ff;
+      }
 
-/* Custom Animations */
-@keyframes slideInFromTop {
-    0% { transform: translateY(-100%); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-}
+      /* Custom Animations */
+      @keyframes slideInFromTop {
+        0% {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
 
-@keyframes bounceIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    50% { transform: scale(1.05); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
-}
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
 
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(100, 32, 170, 0.4); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(100, 32, 170, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(100, 32, 170, 0); }
-}
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(100, 32, 170, 0.4);
+        }
+        70% {
+          transform: scale(1.05);
+          box-shadow: 0 0 0 10px rgba(100, 32, 170, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(100, 32, 170, 0);
+        }
+      }
 
-/* Apply Animations */
-header {
-    animation: slideInFromTop 0.6s ease;
-    background: #ffffff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
+      /* Apply Animations */
+      header {
+        animation: slideInFromTop 0.6s ease;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
 
-.profile-section {
-    animation: fadeIn 0.8s ease;
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
+      .profile-section {
+        animation: fadeIn 0.8s ease;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
 
-.profile-stat {
-    animation: fadeInUp 0.6s ease backwards;
-}
+      .profile-stat {
+        animation: fadeInUp 0.6s ease backwards;
+      }
 
-.profile-stat:nth-child(1) { animation-delay: 0.1s; }
-.profile-stat:nth-child(2) { animation-delay: 0.2s; }
-.profile-stat:nth-child(3) { animation-delay: 0.3s; }
-.profile-stat:nth-child(4) { animation-delay: 0.4s; }
+      .profile-stat:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .profile-stat:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .profile-stat:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .profile-stat:nth-child(4) {
+        animation-delay: 0.4s;
+      }
 
-footer {
-    animation: fadeInUp 0.8s ease;
-    background: #ffffff;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
+      footer {
+        animation: fadeInUp 0.8s ease;
+        background: #ffffff;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
 
-footer h3 {
-    color: var(--primary-color);
-}
+      footer h3 {
+        color: var(--primary-color);
+      }
 
-footer p, footer a {
-    color: var(--text-secondary);
-}
+      footer p,
+      footer a {
+        color: var(--text-secondary);
+      }
 
-footer a:hover {
-    color: var(--primary-color);
-}
+      footer a:hover {
+        color: var(--primary-color);
+      }
 
-@media (max-width: 640px) {
-    .image-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 12px;
-    }
+      @media (max-width: 640px) {
+        .image-grid {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: 12px;
+        }
 
-    .modal-nav-btn {
-        width: 40px;
-        height: 40px;
-    }
+        .modal-nav-btn {
+          width: 40px;
+          height: 40px;
+        }
 
-    .modal-nav-btn.prev { left: 8px; }
-    .modal-nav-btn.next { right: 8px; }
+        .modal-nav-btn.prev {
+          left: 8px;
+        }
+        .modal-nav-btn.next {
+          right: 8px;
+        }
 
-    .profile-stat {
-        padding: 1rem;
-    }
-}
-   </style>
+        .profile-stat {
+          padding: 1rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -623,31 +686,20 @@ footer a:hover {
       </section>
 
       <!-- Image Galleries Section -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
-        <!-- Personal Images -->
-        <section
-          class="bg-white rounded-3xl shadow-xl overflow-hidden p-6 sm:p-8 animate__animated animate__fadeInUp"
+      <!-- Personal Images -->
+      <section
+        class="bg-white rounded-3xl shadow-xl overflow-hidden p-6 sm:p-8 animate__animated animate__fadeInUp"
+      >
+        <h2
+          class="section-title text-xl sm:text-2xl font-semibold text-gray-900 mb-6 sm:mb-8"
         >
-          <h2
-            class="section-title text-xl sm:text-2xl font-semibold text-gray-900 mb-6 sm:mb-8"
-          >
-            Hình ảnh cá nhân
-          </h2>
-          <div id="personal-image-list" class="image-grid"></div>
-        </section>
+          Hình ảnh cá nhân
+        </h2>
+        <div id="personal-image-list" class="image-grid"></div>
+      </section>
 
-        <!-- Livestream Images -->
-        <section
-          class="bg-white rounded-3xl shadow-xl overflow-hidden p-6 sm:p-8 animate__animated animate__fadeInUp"
-        >
-          <h2
-            class="section-title text-xl sm:text-2xl font-semibold text-gray-900 mb-6 sm:mb-8"
-          >
-            Hình ảnh Livestream
-          </h2>
-          <div id="live-image-list" class="image-grid"></div>
-        </section>
-      </div>
+      <!-- Livestream Images -->
+
       <section
         style="margin-top: 20px"
         class="bg-white rounded-3xl shadow-xl overflow-hidden p-6 sm:p-8 mb-8 sm:mb-12 animate__animated animate__fadeInUp"
@@ -664,82 +716,223 @@ footer a:hover {
       </section>
     </main>
 
-<footer style="background: #ffffff; border-top: 1px solid rgba(0, 0, 0, 0.05); margin-top: 3rem; padding: 2rem 0;">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-      <div style="animation: fadeInUp 0.8s ease;">
-        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
-          Văn phòng 1
-        </h3>
-        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
-          5A Trần Văn Dư, Phường 13<br />Quận Tân Bình, TP. Hồ Chí Minh
-        </p>
-      </div>
-      <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.1s;">
-        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
-          Văn phòng 2
-        </h3>
-        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
-          391A Nam Kỳ Khởi Nghĩa, Phường 14<br />Quận 3, TP. Hồ Chí Minh
-        </p>
-      </div>
-      <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.2s;">
-        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
-          Văn phòng 3
-        </h3>
-        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
-          163-165 Trần Trọng Cung<br />Phường Tân Thuận Đông, Quận 7<br />TP. Hồ Chí Minh
-        </p>
-      </div>
-      <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.3s;">
-        <h3 style="color: #6420aa; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
-          Văn phòng 4
-        </h3>
-        <p style="font-size: 0.875rem; color: #666666; line-height: 1.5;">
-          Dragon Hills, Đường Nguyễn Hữu Thọ<br />Phước Kiển, Nhà Bè<br />TP. Hồ Chí Minh
-        </p>
-        <div style="margin-top: 1rem;">
-          <p style="font-size: 0.875rem; color: #666666;">
-            <span style="font-weight: 500;">Hotline:</span>
-            <a href="tel:1900633336" style="color: #6420aa; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ff5c00'" onmouseout="this.style.color='#6420aa'">
-              1900 633 336
-            </a>
-          </p>
-          <p style="font-size: 0.875rem; color: #666666; margin-top: 0.5rem;">
-            <span style="font-weight: 500;">Email:</span>
-            <a href="mailto:lienhe@mvotx.com" style="color: #6420aa; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ff5c00'" onmouseout="this.style.color='#6420aa'">
-              lienhe@mvotx.com
-            </a>
-          </p>
+    <footer
+      style="
+        background: #ffffff;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        margin-top: 3rem;
+        padding: 2rem 0;
+      "
+    >
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+          "
+        >
+          <div style="animation: fadeInUp 0.8s ease">
+            <h3
+              style="
+                color: #6420aa;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+              "
+            >
+              Văn phòng 1
+            </h3>
+            <p style="font-size: 0.875rem; color: #666666; line-height: 1.5">
+              5A Trần Văn Dư, Phường 13<br />Quận Tân Bình, TP. Hồ Chí Minh
+            </p>
+          </div>
+          <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.1s">
+            <h3
+              style="
+                color: #6420aa;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+              "
+            >
+              Văn phòng 2
+            </h3>
+            <p style="font-size: 0.875rem; color: #666666; line-height: 1.5">
+              391A Nam Kỳ Khởi Nghĩa, Phường 14<br />Quận 3, TP. Hồ Chí Minh
+            </p>
+          </div>
+          <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.2s">
+            <h3
+              style="
+                color: #6420aa;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+              "
+            >
+              Văn phòng 3
+            </h3>
+            <p style="font-size: 0.875rem; color: #666666; line-height: 1.5">
+              163-165 Trần Trọng Cung<br />Phường Tân Thuận Đông, Quận 7<br />TP.
+              Hồ Chí Minh
+            </p>
+          </div>
+          <div style="animation: fadeInUp 0.8s ease; animation-delay: 0.3s">
+            <h3
+              style="
+                color: #6420aa;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+              "
+            >
+              Văn phòng 4
+            </h3>
+            <p style="font-size: 0.875rem; color: #666666; line-height: 1.5">
+              Dragon Hills, Đường Nguyễn Hữu Thọ<br />Phước Kiển, Nhà Bè<br />TP.
+              Hồ Chí Minh
+            </p>
+            <div style="margin-top: 1rem">
+              <p style="font-size: 0.875rem; color: #666666">
+                <span style="font-weight: 500">Hotline:</span>
+                <a
+                  href="tel:1900633336"
+                  style="
+                    color: #6420aa;
+                    text-decoration: none;
+                    transition: color 0.2s ease;
+                  "
+                  onmouseover="this.style.color='#ff5c00'"
+                  onmouseout="this.style.color='#6420aa'"
+                >
+                  1900 633 336
+                </a>
+              </p>
+              <p
+                style="font-size: 0.875rem; color: #666666; margin-top: 0.5rem"
+              >
+                <span style="font-weight: 500">Email:</span>
+                <a
+                  href="mailto:lienhe@mvotx.com"
+                  style="
+                    color: #6420aa;
+                    text-decoration: none;
+                    transition: color 0.2s ease;
+                  "
+                  onmouseover="this.style.color='#ff5c00'"
+                  onmouseout="this.style.color='#6420aa'"
+                >
+                  lienhe@mvotx.com
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+          "
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 1rem;
+              flex-wrap: wrap;
+              justify-content: space-between;
+            "
+          >
+            <div
+              style="display: flex; gap: 1rem; animation: fadeInUp 0.8s ease"
+            >
+              <a
+                href="#"
+                style="
+                  color: #666666;
+                  transition: transform 0.3s ease, color 0.2s ease;
+                "
+                onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'"
+                onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'"
+              >
+                <ion-icon
+                  name="logo-twitter"
+                  style="font-size: 1.5rem"
+                ></ion-icon>
+              </a>
+              <a
+                href="https://www.facebook.com/mvotxcom"
+                style="
+                  color: #666666;
+                  transition: transform 0.3s ease, color 0.2s ease;
+                "
+                onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'"
+                onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'"
+              >
+                <ion-icon
+                  name="logo-facebook"
+                  style="font-size: 1.5rem"
+                ></ion-icon>
+              </a>
+              <a
+                href="#"
+                style="
+                  color: #666666;
+                  transition: transform 0.3s ease, color 0.2s ease;
+                "
+                onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'"
+                onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'"
+              >
+                <ion-icon
+                  name="logo-google"
+                  style="font-size: 1.5rem"
+                ></ion-icon>
+              </a>
+              <a
+                href="#"
+                style="
+                  color: #666666;
+                  transition: transform 0.3s ease, color 0.2s ease;
+                "
+                onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'"
+                onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'"
+              >
+                <ion-icon
+                  name="logo-pinterest"
+                  style="font-size: 1.5rem"
+                ></ion-icon>
+              </a>
+              <a
+                href="#"
+                style="
+                  color: #666666;
+                  transition: transform 0.3s ease, color 0.2s ease;
+                "
+                onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'"
+                onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'"
+              >
+                <ion-icon
+                  name="logo-linkedin"
+                  style="font-size: 1.5rem"
+                ></ion-icon>
+              </a>
+            </div>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: #666666;
+                animation: fadeInUp 0.8s ease;
+              "
+            >
+              © 2025 — bởi MVOT Group. Mọi quyền được bảo lưu.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(0, 0, 0, 0.05);">
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: space-between;">
-        <div style="display: flex; gap: 1rem; animation: fadeInUp 0.8s ease;">
-          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
-            <ion-icon name="logo-twitter" style="font-size: 1.5rem;"></ion-icon>
-          </a>
-          <a href="https://www.facebook.com/mvotxcom" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
-            <ion-icon name="logo-facebook" style="font-size: 1.5rem;"></ion-icon>
-          </a>
-          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
-            <ion-icon name="logo-google" style="font-size: 1.5rem;"></ion-icon>
-          </a>
-          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
-            <ion-icon name="logo-pinterest" style="font-size: 1.5rem;"></ion-icon>
-          </a>
-          <a href="#" style="color: #666666; transition: transform 0.3s ease, color 0.2s ease;" onmouseover="this.style.color='#6420aa'; this.style.transform='scale(1.1)'" onmouseout="this.style.color='#666666'; this.style.transform='scale(1)'">
-            <ion-icon name="logo-linkedin" style="font-size: 1.5rem;"></ion-icon>
-          </a>
-        </div>
-        <p style="font-size: 0.875rem; color: #666666; animation: fadeInUp 0.8s ease;">
-          © 2025 — bởi MVOT Group. Mọi quyền được bảo lưu.
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
+    </footer>
 
     <!-- Modal -->
     <div
@@ -831,205 +1024,6 @@ footer a:hover {
           alert("Không thể tải hình ảnh. Vui lòng thử lại sau.");
         }
       };
-      const data = {
-        videoLinks: [
-          "https://drive.google.com/file/d/16L92vIBdF9XKOSsPdB2a_CywRwESqGbx/view",
-          "https://drive.google.com/file/d/16L92vIBdF9XKOSsPdB2a_CywRwESqGbx/view",
-          "https://drive.google.com/file/d/16L92vIBdF9XKOSsPdB2a_CywRwESqGbx/view",
-        ],
-        fullName: "Nguyễn Hiếu Trọng",
-        gender: "Nam",
-        birthYear: "2000",
-        hometown: "Thái Bình",
-        dialect: "Miền Bắc",
-        experienceMonths: 28,
-        fields: ["Bán hàng online"],
-        personalImages: [
-          "https://uploads.mvotx.com/api3/public/uploads/5-2025/1747119433723-01.jpg",
-          "https://uploads.mvotx.com/api3/public/uploads/5-2025/1747119433870-02.JPG",
-          "https://uploads.mvotx.com/api3/public/uploads/5-2025/1747119435272-03.JPG",
-          "https://uploads.mvotx.com/api3/public/uploads/5-2025/1747119434363-04.JPG",
-          "https://uploads.mvotx.com/api3/public/uploads/5-2025/1747119435391-05.JPG",
-          "https://uploads.mvotx.com/api3/public/uploads/5-2025/1747119434214-06.JPG",
-        ],
-        liveImages: [
-          "https://uploads.mvotx.com/api3/public/uploads/5-2025/1747119769072-Screenshot 2025-05-13 at 14.01.27.png",
-          "https://uploads.mvotx.com/api3/public/uploads/5-2025/1747119769175-Screenshot 2025-05-13 at 14.01.54.png",
-          "https://uploads.mvotx.com/api3/public/uploads/5-2025/1747119768709-Screenshot 2025-05-13 at 14.02.13.png",
-        ],
-        strengths: "Thu hút, dẫn dắt tốt, push Sale",
-        achievements:
-          "Hợp tác với đa dạng nhãn hàng, host độc quyền và nhiều phiên mega live với doanh số cao",
-        style: "Sang trọng, chính xác và chỉn chu",
-        suitableProducts: ["Phụ kiện thời trang", "Thời trang nam", "Mỹ phẩm"],
-        _id: "6822eebbcba5c56b89a072fa",
-      };
-
-      const allImages = [...data.personalImages, ...data.liveImages];
-      let currentImageIndex = 0;
-      let isZoomed = false;
-
-      document.getElementById("profile-img").src =
-        data.personalImages[0] || "https://via.placeholder.com/240";
-      document.getElementById("profile-name").textContent = data.fullName;
-      document.getElementById("profile-gender").textContent = data.gender;
-      document.getElementById("profile-birthYear").textContent = data.birthYear;
-      document.getElementById("profile-hometown").textContent = data.hometown;
-      document.getElementById("profile-dialect").textContent = data.dialect;
-      document.getElementById("profile-experience").textContent =
-        data.experienceMonths;
-      document.getElementById("profile-fields").textContent = data.fields.length
-        ? data.fields.join(", ")
-        : "Không có";
-      document.getElementById("profile-strengths").textContent = data.strengths;
-      document.getElementById("profile-achievements").textContent =
-        data.achievements;
-      document.getElementById("profile-style").textContent = data.style;
-
-      const productsContainer = document.getElementById(
-        "suitable-products-container"
-      );
-      if (data.suitableProducts && data.suitableProducts.length) {
-        data.suitableProducts.forEach((product) => {
-          const tag = document.createElement("span");
-          tag.className =
-            "tag inline-block bg-pink-100 text-[var(--primary-color)] text-xs font-semibold px-4 py-2 rounded-full";
-          tag.innerHTML = `<ion-icon name="pricetag-outline" class="mr-1"></ion-icon>${product}`;
-          productsContainer.appendChild(tag);
-        });
-      } else {
-        productsContainer.innerHTML =
-          '<span class="text-gray-500">Không có</span>';
-      }
-
-      const videoList = document.getElementById("video-list");
-      if (data.videoLinks && data.videoLinks.length) {
-        data.videoLinks.forEach((link) => {
-          const div = document.createElement("div");
-          div.className = "video-container";
-          const iframe = document.createElement("iframe");
-          iframe.src = link.replace("/view", "/preview");
-          iframe.setAttribute("allowfullscreen", "");
-          iframe.onload = () => {
-            iframe.contentWindow.postMessage(
-              '{"event":"command","func":"playVideo","args":""}',
-              "*"
-            );
-          };
-          div.appendChild(iframe);
-          videoList.appendChild(div);
-        });
-      } else {
-        videoList.innerHTML = '<p class="text-gray-500">Không có video</p>';
-      }
-
-      const personalImageList = document.getElementById("personal-image-list");
-      if (data.personalImages && data.personalImages.length) {
-        data.personalImages.forEach((img, index) => {
-          const div = document.createElement("div");
-          div.className = "image-card";
-          div.innerHTML = `<img src="${img}" alt="Hình ảnh cá nhân" class="gallery-img w-full h-full object-cover cursor-pointer" loading="lazy">`;
-          div.addEventListener("click", () => {
-            currentImageIndex = index;
-            updateModalImage();
-            openModal();
-          });
-          personalImageList.appendChild(div);
-        });
-      } else {
-        personalImageList.innerHTML =
-          '<p class="text-gray-500">Không có hình ảnh</p>';
-      }
-
-      const liveImageList = document.getElementById("live-image-list");
-      if (data.liveImages && data.liveImages.length) {
-        data.liveImages.forEach((img, index) => {
-          const div = document.createElement("div");
-          div.className = "image-card";
-          div.innerHTML = `<img src="${img}" alt="Hình ảnh livestream" class="gallery-img w-full h-full object-cover cursor-pointer" loading="lazy">`;
-          div.addEventListener("click", () => {
-            currentImageIndex = data.personalImages.length + index;
-            updateModalImage();
-            openModal();
-          });
-          liveImageList.appendChild(div);
-        });
-      } else {
-        liveImageList.innerHTML =
-          '<p class="text-gray-500">Không có hình ảnh</p>';
-      }
-
-      const modalContainer = document.querySelector("[data-modal-container]");
-      const modalImg = document.getElementById("modal-img");
-      const closeBtn = document.querySelector("[data-modal-close-btn]");
-      const overlay = document.querySelector("[data-overlay]");
-      const prevBtn = document.querySelector("[data-prev-btn]");
-      const nextBtn = document.querySelector("[data-next-btn]");
-      const zoomBtn = document.querySelector("[data-zoom-btn]");
-
-      function openModal() {
-        modalContainer.classList.add("active");
-        modalContainer.classList.remove("opacity-0", "invisible");
-        updateNavButtons();
-      }
-
-      function closeModal() {
-        modalContainer.classList.remove("active");
-        modalContainer.classList.add("opacity-0", "invisible");
-        isZoomed = false;
-        modalImg.classList.remove("zoomed");
-      }
-
-      function updateModalImage() {
-        modalImg.src = allImages[currentImageIndex];
-        isZoomed = false;
-        modalImg.classList.remove("zoomed");
-        updateNavButtons();
-      }
-
-      function updateNavButtons() {
-        prevBtn.style.display = currentImageIndex === 0 ? "none" : "flex";
-        nextBtn.style.display =
-          currentImageIndex === allImages.length - 1 ? "none" : "flex";
-      }
-
-      closeBtn.addEventListener("click", closeModal);
-      overlay.addEventListener("click", closeModal);
-
-      prevBtn.addEventListener("click", () => {
-        if (currentImageIndex > 0) {
-          currentImageIndex--;
-          updateModalImage();
-        }
-      });
-
-      nextBtn.addEventListener("click", () => {
-        if (currentImageIndex < allImages.length - 1) {
-          currentImageIndex++;
-          updateModalImage();
-        }
-      });
-
-      zoomBtn.addEventListener("click", () => {
-        isZoomed = !isZoomed;
-        modalImg.classList.toggle("zoomed", isZoomed);
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (!modalContainer.classList.contains("active")) return;
-        if (e.key === "ArrowLeft" && currentImageIndex > 0) {
-          currentImageIndex--;
-          updateModalImage();
-        } else if (
-          e.key === "ArrowRight" &&
-          currentImageIndex < allImages.length - 1
-        ) {
-          currentImageIndex++;
-          updateModalImage();
-        } else if (e.key === "Escape") {
-          closeModal();
-        }
-      });
 
       const copyLink = () => {
         const url = window.location.href;
@@ -1037,6 +1031,197 @@ footer a:hover {
           alert("Link đã được sao chép vào clipboard!");
         });
       };
+
+      function initializeProfile(data) {
+        const allImages = [
+          ...(data.personalImages || []),
+          ...(data.liveImages || []),
+        ];
+        let currentImageIndex = 0;
+        let isZoomed = false;
+
+        // Populate profile details
+        document.getElementById("profile-img").src =
+          data.personalImages?.[0] || "https://via.placeholder.com/240";
+        document.getElementById("profile-name").textContent =
+          data.fullName || "Không có";
+        document.getElementById("profile-gender").textContent =
+          data.gender || "Không có";
+        document.getElementById("profile-birthYear").textContent =
+          data.birthYear || "Không có";
+        document.getElementById("profile-hometown").textContent =
+          data.hometown || "Không có";
+        document.getElementById("profile-dialect").textContent =
+          data.dialect || "Không có";
+        document.getElementById("profile-experience").textContent =
+          data.experienceMonths || "0";
+        document.getElementById("profile-fields").textContent = data.fields
+          ?.length
+          ? data.fields.join(", ")
+          : "Không có";
+        document.getElementById("profile-strengths").textContent =
+          data.strengths || "Không có";
+        document.getElementById("profile-achievements").textContent =
+          data.achievements || "Chưa cung cấp thông tin";
+     
+        document.getElementById("profile-style").textContent =
+          data.style || "Không có";
+
+        // Populate suitable products
+        const productsContainer = document.getElementById(
+          "suitable-products-container"
+        );
+        if (data.suitableProducts?.length) {
+          data.suitableProducts.forEach((product) => {
+            const tag = document.createElement("span");
+            tag.className =
+              "tag inline-block bg-pink-100 text-[var(--primary-color)] text-xs font-semibold px-4 py-2 rounded-full";
+            tag.innerHTML = `<ion-icon name="pricetag-outline" class="mr-1"></ion-icon>${product}`;
+            productsContainer.appendChild(tag);
+          });
+        } else {
+          productsContainer.innerHTML =
+            '<span class="text-gray-500">Không có</span>';
+        }
+
+        // Populate video links
+        const videoList = document.getElementById("video-list");
+        if (data.videoLinks?.length > 0) {
+          data.videoLinks.forEach((link) => {
+            const div = document.createElement("div");
+            div.className = "video-container";
+            const iframe = document.createElement("iframe");
+            iframe.src = link.replace("/view", "/preview");
+            iframe.setAttribute("allowfullscreen", "");
+            iframe.onload = () => {
+              iframe.contentWindow.postMessage(
+                '{"event":"command","func":"playVideo","args":""}',
+                "*"
+              );
+            };
+            div.appendChild(iframe);
+            videoList.appendChild(div);
+          });
+        } else {
+          videoList.innerHTML = '<p class="text-gray-500">Không có video</p>';
+        }
+
+        // Populate personal images
+        const personalImageList = document.getElementById(
+          "personal-image-list"
+        );
+        if (data.personalImages?.length) {
+          data.personalImages.forEach((img, index) => {
+            const div = document.createElement("div");
+            div.className = "image-card";
+            div.innerHTML = `<img src="${img}" alt="Hình ảnh cá nhân" class="gallery-img w-full h-full object-cover cursor-pointer" loading="lazy">`;
+            div.addEventListener("click", () => {
+              currentImageIndex = index;
+              updateModalImage();
+              openModal();
+            });
+            personalImageList.appendChild(div);
+          });
+        } else {
+          personalImageList.innerHTML =
+            '<p class="text-gray-500">Không có hình ảnh</p>';
+        }
+
+        // Modal setup
+        const modalContainer = document.querySelector("[data-modal-container]");
+        const modalImg = document.getElementById("modal-img");
+        const closeBtn = document.querySelector("[data-modal-close-btn]");
+        const overlay = document.querySelector("[data-overlay]");
+        const prevBtn = document.querySelector("[data-prev-btn]");
+        const nextBtn = document.querySelector("[data-next-btn]");
+        const zoomBtn = document.querySelector("[data-zoom-btn]");
+
+        function openModal() {
+          modalContainer.classList.add("active");
+          modalContainer.classList.remove("opacity-0", "invisible");
+          updateNavButtons();
+        }
+
+        function closeModal() {
+          modalContainer.classList.remove("active");
+          modalContainer.classList.add("opacity-0", "invisible");
+          isZoomed = false;
+          modalImg.classList.remove("zoomed");
+        }
+
+        function updateModalImage() {
+          modalImg.src = allImages[currentImageIndex];
+          isZoomed = false;
+          modalImg.classList.remove("zoomed");
+          updateNavButtons();
+        }
+
+        function updateNavButtons() {
+          prevBtn.style.display = currentImageIndex === 0 ? "none" : "flex";
+          nextBtn.style.display =
+            currentImageIndex === allImages.length - 1 ? "none" : "flex";
+        }
+
+        closeBtn.addEventListener("click", closeModal);
+        overlay.addEventListener("click", closeModal);
+
+        prevBtn.addEventListener("click", () => {
+          if (currentImageIndex > 0) {
+            currentImageIndex--;
+            updateModalImage();
+          }
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (currentImageIndex < allImages.length - 1) {
+            currentImageIndex++;
+            updateModalImage();
+          }
+        });
+
+        zoomBtn.addEventListener("click", () => {
+          isZoomed = !isZoomed;
+          modalImg.classList.toggle("zoomed", isZoomed);
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (!modalContainer.classList.contains("active")) return;
+          if (e.key === "ArrowLeft" && currentImageIndex > 0) {
+            currentImageIndex--;
+            updateModalImage();
+          } else if (
+            e.key === "ArrowRight" &&
+            currentImageIndex < allImages.length - 1
+          ) {
+            currentImageIndex++;
+            updateModalImage();
+          } else if (e.key === "Escape") {
+            closeModal();
+          }
+        });
+      }
+
+      // Extract ID from URL and fetch data
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get("id");
+      if (!userId) {
+        document.body.innerHTML =
+          '<p class="text-red-500 text-center">Không tìm thấy ID người dùng.</p>';
+      } else {
+        fetch(`http://localhost:3333/api2/users/public/${userId}`)
+          .then((response) => {
+            if (!response.ok) throw new Error("Không thể lấy dữ liệu");
+            return response.json();
+          })
+          .then((data) => {
+            initializeProfile(data);
+          })
+          .catch((error) => {
+            console.error("Lỗi khi lấy dữ liệu:", error);
+            document.body.innerHTML =
+              '<p class="text-red-500 text-center">Đã xảy ra lỗi khi tải dữ liệu.</p>';
+          });
+      }
     </script>
   </body>
 </html>
