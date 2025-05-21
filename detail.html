@@ -157,27 +157,29 @@
       #video-list {
         display: flex;
         flex-wrap: nowrap;
-        gap: 16px; /* Giảm khoảng cách giữa các video */
+        gap: 12px;
         overflow-x: auto;
         padding-bottom: 16px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
       }
 
       .video-container {
         flex: 0 0 auto;
         width: 100%;
-        max-width: 400px; /* Giảm chiều rộng để video gọn hơn */
+        max-width: 280px;
         aspect-ratio: 9 / 16;
         margin: 0;
+        scroll-snap-align: start;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
-      .video-container:nth-child(1) {
-        animation-delay: 0.2s;
-      }
-      .video-container:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-      .video-container:nth-child(3) {
-        animation-delay: 0.6s;
+      .video-container:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
       }
 
       .video-container iframe {
@@ -186,15 +188,16 @@
         border: none;
         border-radius: 16px;
         object-fit: cover;
+        display: block;
       }
 
       .video-placeholder {
         width: 100%;
-        max-width: 360px;
+        max-width: 280px;
         aspect-ratio: 9 / 16;
         margin: 0 auto;
         background: #e5e7eb
-          url("https://via.placeholder.com/360x640?text=Không+có+video")
+          url("https://via.placeholder.com/280x498?text=Không+có+video")
           center/cover no-repeat;
         display: flex;
         align-items: center;
@@ -203,42 +206,12 @@
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
       }
 
-      #video-list {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 12px; /* Giảm khoảng cách giữa các video */
-        overflow-x: auto;
-        padding-bottom: 16px;
-        scroll-snap-type: x mandatory; /* Tạo hiệu ứng snap khi cuộn */
-        -webkit-overflow-scrolling: touch; /* Cải thiện cuộn trên iOS */
-        position: relative;
-      }
-
-      .video-container {
-        flex: 0 0 auto;
-        width: 100%;
-        max-width: 280px; /* Giảm chiều rộng để hiển thị tốt trên mobile */
-        aspect-ratio: 9 / 16;
-        margin: 0;
-        scroll-snap-align: start; /* Đảm bảo video căn chỉnh khi cuộn */
-      }
-
-      .video-container iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 16px;
-        object-fit: cover;
-        display: block; /* Loại bỏ khoảng trống dưới iframe */
-      }
-
-      /* Chỉ báo cuộn */
-      #video-list::after {
-        content: "Vuốt xem thêm →";
+      /* Chỉ báo cuộn khi tràn */
+      #video-list.overflow::after {
         position: absolute;
-        bottom: 0;
+        bottom: 8px;
         right: 10px;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.7);
         color: white;
         padding: 4px 8px;
         border-radius: 12px;
@@ -247,16 +220,41 @@
         transition: opacity 0.3s ease;
       }
 
-      #video-list:hover::after {
+      #video-list.overflow:hover::after {
         opacity: 1;
       }
 
       @media (max-width: 640px) {
-        .video-container {
-          max-width: 240px; /* Thu nhỏ hơn trên mobile */
+        .image-grid {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: 12px;
         }
 
-        #video-list::after {
+        .modal-nav-btn {
+          width: 40px;
+          height: 40px;
+        }
+
+        .modal-nav-btn.prev {
+          left: 8px;
+        }
+        .modal-nav-btn.next {
+          right: 8px;
+        }
+
+        .profile-stat {
+          padding: 1rem;
+        }
+
+        .video-container {
+          max-width: 240px;
+        }
+
+        .video-placeholder {
+          max-width: 240px;
+        }
+
+        #video-list.overflow::after {
           font-size: 10px;
           padding: 3px 6px;
         }
@@ -453,34 +451,6 @@
       footer a:hover {
         color: var(--primary-color);
       }
-
-      @media (max-width: 640px) {
-        .image-grid {
-          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-          gap: 12px;
-        }
-
-        .modal-nav-btn {
-          width: 40px;
-          height: 40px;
-        }
-
-        .modal-nav-btn.prev {
-          left: 8px;
-        }
-        .modal-nav-btn.next {
-          right: 8px;
-        }
-
-        .profile-stat {
-          padding: 1rem;
-        }
-
-        .video-container,
-        .video-placeholder {
-          max-width: 90vw;
-        }
-      }
     </style>
   </head>
   <body>
@@ -559,12 +529,12 @@
               </p>
               <div class="flex justify-center gap-4 mt-4 w-full">
                 <a
-                  href="https://www.facebook.com/messages/t/mvotxcom"
+                  href="https://m.me/mvotxcom"
                   id="contact-btn"
                   class="btn-primary px-4 sm:px-6 py-2 sm:py-3 rounded-xl flex items-center justify-center text-sm font-semibold"
                 >
-                  <ion-icon name="calendar-outline" class="mr-2"></ion-icon>
-                  Cộng tác ngay
+                  <ion-icon name="chatbubble-outline" class="mr-2"></ion-icon>
+                  Nhắn tin ngay
                 </a>
               </div>
             </div>
@@ -1153,6 +1123,7 @@
             const iframe = document.createElement("iframe");
             iframe.src = link.replace("/view", "/preview");
             iframe.setAttribute("allowfullscreen", "");
+            iframe.loading = "lazy";
             iframe.onload = () => {
               iframe.contentWindow.postMessage(
                 '{"event":"command","func":"playVideo","args":""}',
@@ -1162,6 +1133,13 @@
             div.appendChild(iframe);
             videoList.appendChild(div);
           });
+
+          // Kiểm tra overflow sau khi video được thêm
+          setTimeout(() => {
+            if (videoList.scrollWidth > videoList.clientWidth) {
+              videoList.classList.add("overflow");
+            }
+          }, 100);
         } else {
           videoList.innerHTML = `
             <div class="video-placeholder">
