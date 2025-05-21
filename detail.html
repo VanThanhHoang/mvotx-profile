@@ -483,7 +483,8 @@
               </p>
               <div class="flex justify-center gap-4 mt-4 w-full">
                 <a
-                  href="#"
+                  href="mailto:tubv@mvot.vn"
+                  id="contact-btn"
                   class="btn-primary px-4 sm:px-6 py-2 sm:py-3 rounded-xl flex items-center justify-center text-sm font-semibold"
                 >
                   <ion-icon name="calendar-outline" class="mr-2"></ion-icon>
@@ -1200,7 +1201,9 @@
           }
         });
       }
-
+      const contactBtn = document.getElementById("contact-btn");
+      // mail to tubv@mvot.com and info host
+    
       // Extract ID from URL and fetch data
       const urlParams = new URLSearchParams(window.location.search);
       const userId = urlParams.get("id");
